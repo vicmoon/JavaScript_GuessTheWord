@@ -1,0 +1,25 @@
+const wordList = [
+    { word: "Algorithm", hint: "A step-by-step procedure or formula for solving a problem." },
+    { word: "Variable", hint: "A placeholder for storing a piece of data." },
+    { word: "Function", hint: "A block of code designed to perform a specific task." },
+    { word: "Database", hint: "A structured set of data stored electronically." },
+    { word: "Framework", hint: "A platform for developing software applications." },
+    { word: "Interface", hint: "A boundary across which two independent systems meet." },
+    { word: "Backend", hint: "The part of a software system responsible for data processing." },
+    { word: "Frontend", hint: "The part of a software system visible to the user." },
+    { word: "Compiler", hint: "A program that translates source code into machine code." },
+    { word: "Debugging", hint: "The process of finding and fixing errors in code." },
+    { word: "Encryption", hint: "The process of encoding data to make it secure." },
+    { word: "Decryption", hint: "The process of decoding encrypted data." },
+    { word: "Authentication", hint: "Verifying the identity of a user or system." },
+    { word: "Authorization", hint: "Granting permissions to access resources." },
+    { word: "Virtualization", hint: "Creating a virtual version of a resource or device." },
+    { word: "API (Application Programming Interface)", hint: "A set of rules for building software applications." },
+    { word: "Responsive", hint: "Adapting to different screen sizes and devices." },
+    { word: "Cache", hint: "A temporary storage location for frequently accessed data." },
+    { word: "DOM (Document Object Model)", hint: "A programming interface for web documents." },
+    { word: "HTTP (Hypertext Transfer Protocol)", hint: "A protocol for transmitting data over the internet." },
+    { word: "HTTPS (Hypertext Transfer Protocol Secure)", hint: "A secure version of HTTP." },
+    { word: "Repository", hint: "A central location for storing and managing files." }
+  ];
+  
