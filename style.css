@@ -36,6 +36,7 @@ body{
     margin: 5px; 
     font-size: 24px;
     text-align: center;
+    text-transform: uppercase;
     border-radius: 20px;
     background-color: #E8C872;
     border: 1px solid #637A9F;
@@ -49,6 +50,12 @@ body{
 .content .details{
     margin: 40px 0 40px;
 
+}
+
+.content .typing-input{
+   opacity: 0; 
+   z-index: -999;
+   position: absolute;
 }
 
 .details p{
