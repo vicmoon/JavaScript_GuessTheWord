@@ -58,20 +58,38 @@ function initGame(e) {
 
 
 
-function checkIfWon(){
-     const guessedWord = correct.join(' ').toLowerCase();
+function checkIfWon() {
+    let isWordGuessed = true; // Assume the word is guessed until proven otherwise
+    
+    // Check each letter in the correct array against the corresponding letter in the word
+    for (let i = 0; i < word.length; i++) {
+        if (correct[i].toLowerCase() !== word[i].toLowerCase()) {
+            isWordGuessed = false; // If any letter does not match, set flag to false
+            break; // Exit the loop early, as the word cannot be fully guessed
+        }
+    }
 
-    if (guessedWord === word.toLowerCase()) {
-        console.log(word);
-        alert("You won!");
-        randomWord();
-    } else if (maxGuesses <= 0) {
-        alert("Game over! No more tries left");
+    // If all letters match, fill in any remaining empty inputs before showing the alert
+    if (isWordGuessed) {
+        for (let i = 0; i < word.length; i++) {
+            if (!inputs.querySelectorAll("input")[i].value) {
+                inputs.querySelectorAll("input")[i].value = word[i];
+            }
+        }
+        
+        setTimeout(function(){
+            alert("You found it!");
+            randomWord();
+        }, 100)
+        
+    } else if (maxGuesses < 0) {
+        alert("Game over! No more tries left. ");
         for (let i = 0; i < word.length; i++) {
             inputs.querySelectorAll("input")[i].value = word[i];
         }
     }
 }
+
 
 resetBTN.addEventListener('click', randomWord);
 

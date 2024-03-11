@@ -1,23 +1,39 @@
 body{
-    background-color: #211951;
-    color: aliceblue;
+    background-color: #060047;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
     font-size: 20px;
+    font-family: "Share Tech Mono", monospace;
 
 }
 
+.share-tech mono-regular {
+    font-family: "Share Tech Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+
+
+.hint{
+    color: #211951;
+}
 .title{
-    color:#E8C872;
+    color: #B3005E;
+    border-radius: 20px;
+    padding: 15px;
+    margin-bottom: 20px;
 }
 
 .wrapper{
     width:500px;
     background:#836FFF;
     border-radius: 30px;
+    border: 2px solid whitesmoke;
+    border-style: dashed;
 }
 .wrapper .content{
     margin: 25px 25px 25px;
@@ -49,7 +65,18 @@ body{
 
 .content .details{
     margin: 40px 0 40px;
+}
 
+.guess-left{
+    background-color: #E8C872;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.wrong-letter{
+    background-color: #E8C872;
+    border-radius: 20px;
+    padding: 10px;
 }
 
 .content .typing-input{
@@ -68,7 +95,7 @@ body{
     padding: 10px;
     border-radius: 20px;
     width: 100%;
-    background-color:#CAEDFF;
+    background-color:#00DFA2;
     border: 2px solid black;
 }
 
