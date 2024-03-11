@@ -11,63 +11,78 @@ let maxGuesses;
 
 
 
-function randomWord(){
-    // get random object from wordlist  
-
-    let randomObject = wordList[Math.floor(Math.random()* wordList.length)];
+function randomWord() {
+    let randomObject = wordList[Math.floor(Math.random() * wordList.length)];
     word = randomObject.word;
-    maxGuesses = 20; correct =[]; incorrect= []
+    maxGuesses = 20;
+    correct = Array(word.length).fill(""); // Initialize correct array with empty strings
+    incorrect = [];
+    hint.innerHTML = randomObject.hint;
+    wrongLetter.innerText = "";
+    remainingTry.innerHTML = maxGuesses;
 
-    
-    hint.innerHTML =  randomObject.hint; 
-    wrongLetter.innerText = incorrect;
-    remainingTry.innerHTML= maxGuesses;
-    
-
-    let html = '' ;
-    for(let i=0; i<word.length; i++ ){
-        html += ` <input type="text" disabled> `
-    }inputs.innerHTML = html;
+    let html = '';
+    for (let i = 0; i < word.length; i++) {
+        html += `<input type="text" disabled>`;
+    }
+    inputs.innerHTML = html;
 }
+
 randomWord();
 
-
 function initGame(e) {
-    // Getting user input 
-    let key = e.target.value;
-    console.log(key); 
-    if (key.match(/^[A-Za-z]+$/) && !incorrect.includes(` ${key}`)) {
-        console.log(key);
-        if (word.includes(key)) {  // if user input is part of the word 
-            for (let i = 0; i < word.length; i++) {
-                if (word[i] === key) {
-                    // showing matching letter in the input value 
-                    correct += key; 
-                    inputs.querySelectorAll("input")[i].value = key; 
-                }
+    const key = e.key.toLowerCase(); // Ensure lowercase for consistency
+
+    if (key.match(/^[a-z]$/) && !incorrect.includes(key)) {
+        let found = false; // Flag to check if the letter was found
+        for (let i = 0; i < word.length; i++) {
+            if (word[i].toLowerCase() === key) {
+                correct[i] = word[i]; 
+                inputs.querySelectorAll("input")[i].value = word[i]; 
+                found = true; // Set flag to true if letter is found
             }
-        } else {
-            maxGuesses--; 
-            incorrect.push( ` ${key}`);     
+        }
+        if (!found) {
+            maxGuesses--;
+            incorrect.push(key);
+            wrongLetter.innerText = incorrect.join(" "); 
         }
     }
 
     // Check for win condition after each input
-    if (correct.length === word.length) {
-        alert("You won! ");
-        randomWord(); 
-    } else if (maxGuesses <= 0 ) {
-        alert("Game over! No more tries left. ")
-        for (let i = 0; i < word.length; i++) {
-            inputs.querySelectorAll("input")[i].value = word[i];
-        }
-    }
-     
+    checkIfWon();
+    remainingTry.innerText = maxGuesses; // Update remaining guesses
     typingInput.value = ""; // Reset the input field
 }
 
 
 
+
+function checkIfWon(){
+     const guessedWord = correct.join(' ').toLowerCase();
+
+    if (guessedWord === word.toLowerCase()) {
+        console.log(word);
+        alert("You won!");
+        randomWord();
+    } else if (maxGuesses <= 0) {
+        alert("Game over! No more tries left");
+        for (let i = 0; i < word.length; i++) {
+            inputs.querySelectorAll("input")[i].value = word[i];
+        }
+    }
+}
+
 resetBTN.addEventListener('click', randomWord);
-typingInput.addEventListener('input', initGame);
-document.addEventListener('keydown', () => typingInput.focus());
+
+document.addEventListener('keydown', (e) => {
+    const key = e.key;
+    if (key.match(/^[A-Za-z]+$/) && !incorrect.includes(` ${key}`)) {
+        typingInput.value = key; // Set the input field value to the pressed key
+        initGame(e); // Pass the event object to initGame
+    }
+    typingInput.focus(); // Focus back on the input field
+});
+
+
+
